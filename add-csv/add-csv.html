@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSV File Loader</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h3 class="mb-2 text-info">Load csv file</h3>
+  <div class="deutsch">
+    <img src="deutsch.png">
+  </div>
+  <div class="row mt-4 justify-content-md-center">
+    <div class="col-md-2">
+      <input type="file" id="csvFileInput" class="form-control-file">
+    </div>
+  </div>
+  <div class="row mt-3 justify-content-md-center">
+    <div class="col-md-2">
+      <button id="loadButton" class="btn btn-primary mr-4">Load CSV</button>
+      <button id="processButton" class="btn btn-primary ml-4">Process Data</button>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      var csvFileInput = document.getElementById("csvFileInput");
+      var loadButton = document.getElementById("loadButton");
+      var processButton = document.getElementById("processButton");
+      var csvData;
+
+      loadButton.addEventListener("click", function () {
+        var file = csvFileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          csvData = e.target.result;
+          alert("CSV file loaded successfully!");
+        };
+
+        reader.readAsText(file);
+      });
+
+      processButton.addEventListener("click", function () {
+        if (csvData) {
+          // Process the CSV data here
+          alert("Processing CSV data...");
+          console.log(csvData);
+        } else {
+          alert("Please load a CSV file first!");
+        }
+      });
+    });
+  </script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
