@@ -17,10 +17,13 @@
     <div class="row mt-4 justify-content-md-center">
       <div class="col d-flex justify-content-center align-items-center form-group">
         <label id="lessonLabel" for="lessonInput">Lesson Name</label>
-        <input type="field" id="lessonInput">
+        <input type="field" id="lessonInput" required>
       </div>
     </div>
     <div class="row mt-2 justify-content-md-center">
+      <div class="col-md-2 d-flex justify-content-center align-items-center">
+        <button id="loadButton" class="btn btn-info">Load CSV</button>
+      </div>
       <div class="col-md-3 d-flex justify-content-center align-items-center">
         <input type="file" id="csvFileInput" class="form-control-file">
       </div>
@@ -28,15 +31,15 @@
   </div>
   <div class="row mt-3 justify-content-md-center">
     <div class="col-md-2 d-flex justify-content-center align-items-center">
-      <button id="loadButton" class="btn btn-primary">Load CSV</button>
+      <button id="backCsv" class="btn btn-secondary">Back</button>
     </div>
-    <div class="col-md-2 d-flex justify-content-center align-items-center">
+    <div class="col-md-3 d-flex justify-content-center align-items-center">
       <button id="processButton" class="btn btn-primary">Process Data</button>
     </div>
   </div>
   </div>
 
-  <script src="add-csv.js"></script>
+  <script src="manage-words.js"></script>
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

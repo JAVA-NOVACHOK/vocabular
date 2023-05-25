@@ -1,5 +1,8 @@
 export const database = 'vocabular.db'
 export const table = 'words'
+const lesson = 'lesson'
+const word = 'word'
+const definition = 'definition'
 
 export const createTableSql = `
   CREATE TABLE IF NOT EXISTS ${table} (
@@ -8,4 +11,4 @@ export const createTableSql = `
     word TEXT,
     definition TEXT
   )`
-export const insertWord = (lesson, word, definition) => `INSERT INTO ${table} (${lesson}, ${word}, ${definition}) VALUES (?, ?, ?)`
+export const insertWord = `INSERT INTO ${table} (${lesson}, ${word}, ${definition}) VALUES (?, ?, ?)`

@@ -3,6 +3,7 @@ $(document).ready(function () {
   var csvFileInput = document.getElementById("csvFileInput");
   var loadButton = document.getElementById("loadButton");
   var processButton = document.getElementById("processButton");
+  var backButton = document.getElementById("backCsv");
   var csvData;
 
   loadButton.addEventListener("click", function () {
@@ -26,5 +27,9 @@ $(document).ready(function () {
     } else {
       alert("Please load a CSV file first!");
     }
+  });
+
+  backButton.addEventListener("click", function () {
+    window.open("../welcome/welcome.html", "_blank");
   });
 });

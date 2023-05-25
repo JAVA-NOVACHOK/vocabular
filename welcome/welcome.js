@@ -1,7 +1,11 @@
 
 
-var addButton = document.getElementById("addLessonButton");
+var addButton = document.getElementById("addWordsBulk");
 
 addButton.addEventListener("click", function () {
-    window.open("../add-csv/add-csv.html", "_blank");
+    window.open("../add-csv/manage-words.html", "_blank");
+});
+
+addButton.addEventListener("click", function () {
+    window.open("../add-csv/manage-words.html", "_blank");
 });

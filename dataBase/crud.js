@@ -1,4 +1,4 @@
-const { createTableSql, database } = require('../constants/consts');
+const { createTableSql, database, insertWord } = require('../constants/consts.js');
 
 const sqlite3 = require('sqlite3').verbose();
 
@@ -12,7 +12,7 @@ const db = new sqlite3.Database(database, (err) => {
     }
 });
 
-function createTable() {
+function createTableIfExist() {
     db.run(createTableSql, function (err) {
         if (err) {
             alert(err)
@@ -24,15 +24,14 @@ function createTable() {
 
 }
 
-function insertLesson() {
-    const insertSql = `INSERT INTO ${table} (name, email) VALUES (?, ?)`;
-    const values = ['John Doe', 'john.doe@example.com'];
-
-    db.run(insertSql, values, function (err) {
+function addWord(lesson, word, definition) {
+    const values = [lesson, word, definition]
+    db.run(insertWord, values, function (err) {
         if (err) {
-            console.error(err.message);
+            atert(err.message)
+            console.error(err);
         } else {
-            console.log(`A new user has been inserted with ID ${this.lastID}`);
+            console.log(`A new lesson has been inserted with ID ${this.lastID}`);
         }
     });
 }
