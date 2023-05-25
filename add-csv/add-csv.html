@@ -14,48 +14,21 @@
     <img src="deutsch.png">
   </div>
   <div class="row mt-4 justify-content-md-center">
-    <div class="col-md-2">
+    <div class="col-md-3 d-flex align-items-center">
       <input type="file" id="csvFileInput" class="form-control-file">
     </div>
   </div>
   <div class="row mt-3 justify-content-md-center">
-    <div class="col-md-2">
-      <button id="loadButton" class="btn btn-primary mr-4">Load CSV</button>
-      <button id="processButton" class="btn btn-primary ml-4">Process Data</button>
+    <div class="col-md-2 d-flex justify-content-center align-items-center">
+      <button id="loadButton" class="btn btn-primary">Load CSV</button>
+    </div>
+    <div class="col-md-2 d-flex justify-content-center align-items-center">
+      <button id="processButton" class="btn btn-primary">Process Data</button>
     </div>
   </div>
   </div>
 
-  <script>
-    $(document).ready(function () {
-      var csvFileInput = document.getElementById("csvFileInput");
-      var loadButton = document.getElementById("loadButton");
-      var processButton = document.getElementById("processButton");
-      var csvData;
-
-      loadButton.addEventListener("click", function () {
-        var file = csvFileInput.files[0];
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          csvData = e.target.result;
-          alert("CSV file loaded successfully!");
-        };
-
-        reader.readAsText(file);
-      });
-
-      processButton.addEventListener("click", function () {
-        if (csvData) {
-          // Process the CSV data here
-          alert("Processing CSV data...");
-          console.log(csvData);
-        } else {
-          alert("Please load a CSV file first!");
-        }
-      });
-    });
-  </script>
+  <script src="add-csv.js"></script>
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
