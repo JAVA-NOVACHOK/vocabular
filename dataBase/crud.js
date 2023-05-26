@@ -2,7 +2,6 @@ const { createTableSql, database, insertWord } = require('../constants/consts.js
 
 const sqlite3 = require('sqlite3').verbose();
 
-// Connect to the database
 const db = new sqlite3.Database(database, (err) => {
     if (err) {
         alert(err.message)
@@ -31,7 +30,7 @@ function addWord(lesson, word, definition) {
             atert(err.message)
             console.error(err);
         } else {
-            console.log(`A new lesson has been inserted with ID ${this.lastID}`);
+            console.log(`A new word has been inserted with ID ${this.lastID}`);
         }
     });
 }
