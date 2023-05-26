@@ -1,0 +1,6 @@
+{
+    "dependencies": {
+        "select2": "^4.1.0-rc.0",
+        "sqlite3": "^5.1.6"
+    }
+}
