@@ -4,7 +4,6 @@ $(document).ready(function () {
   var loadButton = document.getElementById("loadButton");
   var processButton = document.getElementById("processButton");
   var backButton = document.getElementById("backCsv");
-  var lessonDropdown = document.getElementById("lessonDropdown")
   var csvData;
 
   loadButton.addEventListener("click", function () {
@@ -33,18 +32,19 @@ $(document).ready(function () {
     window.open("../welcome/welcome.html", "_self");
   });
 
-  document.addEventListener('DOMContentLoaded', function () {
-    $('#lessonDropdown').select2({
-        tags: true,
-        createTag: function (params) {
-            return {
-                id: params.term,
-                text: params.term,
-                isNew: true
-            };
-        },
-        placeholder: "Select an option or type your own",
-        allowClear: true
-    });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  $('#lessonDropdown').select2({
+      tags: true,
+      placeholder: "Select an option or type your own",
+      createTag: function (params) {
+          return {
+              id: params.term,
+              text: params.term,
+              isNew: true
+          };
+      },
+      allowClear: true
+  });
 });
