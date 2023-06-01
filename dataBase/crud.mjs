@@ -1,5 +1,5 @@
 const { database, insertWord } = require('../constants/consts.js');
-import createTableSql from '../constants/consts.js'
+import createTableSql, { insertOrIgnoreLesson } from '../constants/consts.js'
 
 const sqlite3 = require('sqlite3').verbose();
 
@@ -21,7 +21,6 @@ function createTableIfExist() {
             console.log('Users table created or already exists');
         }
     });
-
 }
 
 function addWord(lesson, word, definition) {
@@ -36,6 +35,17 @@ function addWord(lesson, word, definition) {
     });
 }
 
+function addLesson(lesson_name){
+    db.run(insertOrIgnoreLesson, [lesson_name], function(err){
+        if (err) {
+            atert(err.message)
+            console.error(err);
+        } else {
+            console.log(`A new word has been inserted with ID ${this.lastID}`);
+        }
+    })
+}
+
 
 db.close((err) => {
     if (err) {
@@ -44,3 +54,5 @@ db.close((err) => {
         console.log('Database connection closed');
     }
 });
+
+export {addLesson}

@@ -1,4 +1,8 @@
 {
+    "name": "vocabular",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "index.js",
     "dependencies": {
         "select2": "^4.1.0-rc.0",
         "sqlite3": "^5.1.6"
