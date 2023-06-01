@@ -1,4 +1,5 @@
-const { createTableSql, database, insertWord } = require('../constants/consts.js');
+const { database, insertWord } = require('../constants/consts.js');
+import createTableSql from '../constants/consts.js'
 
 const sqlite3 = require('sqlite3').verbose();
 

@@ -4,6 +4,7 @@ $(document).ready(function () {
   var loadButton = document.getElementById("loadButton");
   var processButton = document.getElementById("processButton");
   var backButton = document.getElementById("backCsv");
+  var lessonDropdown = document.getElementById("lessonDropdown")
   var csvData;
 
   loadButton.addEventListener("click", function () {
@@ -16,7 +17,6 @@ $(document).ready(function () {
       csvData = e.target.result;
       alert("CSV file loaded successfully!");
     };
-
     reader.readAsText(file);
   });
 
@@ -30,6 +30,21 @@ $(document).ready(function () {
   });
 
   backButton.addEventListener("click", function () {
-    window.open("../welcome/welcome.html", "_blank");
+    window.open("../welcome/welcome.html", "_self");
   });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    $('#lessonDropdown').select2({
+        tags: true,
+        createTag: function (params) {
+            return {
+                id: params.term,
+                text: params.term,
+                isNew: true
+            };
+        },
+        placeholder: "Select an option or type your own",
+        allowClear: true
+    });
+});
 });

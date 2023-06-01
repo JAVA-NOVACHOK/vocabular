@@ -2,15 +2,15 @@
 
 
 var addButton = document.getElementById("addWordsBulk");
-// var dropdown = document.getElementById("lessonDropdown")
-
-addButton.addEventListener("click", function () {
-    window.open("../add-csv/manage-words.html");
-});
+var lessonDropdown = document.getElementById("lessonDropdown")
 
 // addButton.addEventListener("click", function () {
-//     window.open("../add-csv/manage-words.html", "_blank");
+//     window.open("../add-csv/manage-words.html");
 // });
+
+addButton.addEventListener("click", function () {
+    window.open("../add-csv/manage-words.html", "_self");
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     $('#lessonDropdown').select2({

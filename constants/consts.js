@@ -11,4 +11,6 @@ export const createTableSql = `
     word TEXT,
     definition TEXT
   )`
-export const insertWord = `INSERT INTO ${table} (${lesson}, ${word}, ${definition}) VALUES (?, ?, ?)`
+export const insertWord = `
+  INSERT INTO ${table} (${lesson}, ${word},
+  ${definition}) VALUES (?, ?, ?)`
