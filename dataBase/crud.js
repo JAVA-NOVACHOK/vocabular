@@ -1,9 +1,9 @@
-const { database, insertWord } = require('../constants/consts.js');
-import createTableSql, { insertOrIgnoreLesson } from '../constants/consts.js'
+// import sqlite3 from 'sqlite3'
+import mysql from 'websql'
+import { createTableSql, insertOrIgnoreLesson, database, insertWord } from '../constants/consts.js'
+// const sqlite3 = require('sqlite3').verbose();
 
-const sqlite3 = require('sqlite3').verbose();
-
-const db = new sqlite3.Database(database, (err) => {
+const db = new sqlite3.verbose().Database(database, (err) => {
     if (err) {
         alert(err.message)
         console.error(err);
@@ -35,8 +35,8 @@ function addWord(lesson, word, definition) {
     });
 }
 
-function addLesson(lesson_name){
-    db.run(insertOrIgnoreLesson, [lesson_name], function(err){
+export function addLesson(lesson_name) {
+    db.run(insertOrIgnoreLesson, [lesson_name], function (err) {
         if (err) {
             atert(err.message)
             console.error(err);
@@ -55,4 +55,4 @@ db.close((err) => {
     }
 });
 
-export {addLesson}
+export { addLesson }

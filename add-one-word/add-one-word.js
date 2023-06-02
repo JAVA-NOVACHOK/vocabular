@@ -1,14 +1,17 @@
-import { addLesson } from "../dataBase/crud.mjs";
+import { addLesson } from "../dataBase/crud.js";
 
 var backAddOneWordBtn = document.getElementById('backAddOne');
 var addOneBtn = document.getElementById('addWord');
 
 backAddOneWordBtn.addEventListener('click', function(){
-    window.open("../welcome/welcome.html", "_self")
+    window.open("/welcome", "_self")
 })
 
 addOneBtn.addEventListener('click', function(){
-    addLesson('Lesson2')
+    const lessonName = $('lessonDropdown').val()
+    const wordField =$('wordLanguage').val()
+    const description = $('description').val()
+    addLesson(lessonName)
 })
 
 

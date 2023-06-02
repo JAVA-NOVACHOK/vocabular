@@ -1,5 +1,5 @@
 import express from 'express'
-import url from 'url'
+import { addLesson } from "./dataBase/crud.js"
 import path from 'path'
 const app = express()
 const port = 3000
@@ -19,6 +19,14 @@ app.get('/add-csv', (req, res) => {
 
 app.get('/add-one-word', (req,res) => {
     res.sendFile(path.join(__dirname, 'add-one-word', 'add-one-word.html'))
+})
+
+app.get('/welcome', (req, res) => {
+    res.sendFile(path.join(__dirname, 'welcome', 'welcome.html'))
+})
+
+app.post('/add-word', (req, res) => {
+    addLesson()
 })
 
 app.listen(port, () => {
