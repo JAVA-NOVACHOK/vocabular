@@ -1,17 +1,18 @@
-// $(document).ready(function () {
 
+const addButton = document.getElementById("addWordsBulk");
+const addOneWord = document.getElementById("addOneWord")
 
-var addButton = document.getElementById("addWordsBulk");
-var addOneWord = document.getElementById("addOneWord");
-var lessonDropdown = document.getElementById("lessonDropdown")
+addButton.addEventListener('click', openAddCsv)
+addOneWord.addEventListener('click', openAddOneWord)
 
-addButton.addEventListener("click", function () {
-    window.open("../add-csv/manage-words.html", "_self");
-});
+function openAddCsv() {
+    window.open('/add-csv', '_self')
+}
 
-addOneWord.addEventListener("click", function () {
-    window.open("../add-one-word/add-one-word.html", "_self");
-});
+function openAddOneWord(){
+    window.open('/add-one-word', '_self')
+}
+
 
 
 
