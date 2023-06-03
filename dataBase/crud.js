@@ -1,9 +1,9 @@
-// import sqlite3 from 'sqlite3'
-import mysql from 'websql'
+import sqlite3 from 'sqlite3'
+// import mysql from 'websql'
 import { createTableSql, insertOrIgnoreLesson, database, insertWord } from '../constants/consts.js'
 // const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.verbose().Database(database, (err) => {
+const db = new sqlite3.Database(database, (err) => {
     if (err) {
         alert(err.message)
         console.error(err);
@@ -35,24 +35,31 @@ function addWord(lesson, word, definition) {
     });
 }
 
-export function addLesson(lesson_name) {
-    db.run(insertOrIgnoreLesson, [lesson_name], function (err) {
+// export function addLesson(lesson_name) {
+
+//     const lessonName = $('lessonDropdown').val()
+//     const wordField = $('wordLanguage').val()
+//     const description = $('description').val()
+//     addLesson(lessonName)
+//     db.run(insertOrIgnoreLesson, [lesson_name], error => {
+//         if (error) {
+//             atert(error.message)
+//             console.error(error);
+//         } else {
+//             console.log(`A new word has been inserted with ID ${this.lastID}`);
+//         }
+//     })
+// }
+
+
+function closeDb() {
+    db.close((err) => {
         if (err) {
-            atert(err.message)
-            console.error(err);
+            console.error(err.message);
         } else {
-            console.log(`A new word has been inserted with ID ${this.lastID}`);
+            console.log('Database connection closed');
         }
     })
 }
 
-
-db.close((err) => {
-    if (err) {
-        console.error(err.message);
-    } else {
-        console.log('Database connection closed');
-    }
-});
-
-export { addLesson }
+// export { addLesson }
