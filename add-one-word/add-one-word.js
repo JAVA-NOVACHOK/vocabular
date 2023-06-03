@@ -16,18 +16,14 @@ addOneWordForm.addEventListener('submit', event => {
 
 function submitForm(form) {
     const formData = new FormData(form)
-    const payload = Object.fromEntries(formData.entries)
+    const payload = Object.fromEntries(formData.entries())
 
     fetch('/add-word', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
-    .then(resp => resp.json())
-    .then(resp =>{
-        console.log(resp.json())
-    }).catch(error => {
-        allert(error.message)
+    .catch(error => {
         console.log(error)
     })
 }

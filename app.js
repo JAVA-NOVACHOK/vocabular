@@ -1,8 +1,12 @@
 import express from 'express'
-// import { addLesson } from "./dataBase/crud.js"
+import bodyParser from 'body-parser'
 import path from 'path'
 import url from 'url'
+import { addLesson } from './dataBase/crud.js'
+
+
 const app = express()
+app.use(bodyParser.json())
 const port = 3000
 
 const __filename = url.fileURLToPath(import.meta.url);
@@ -27,13 +31,15 @@ app.get('/welcome', (req, res) => {
 })
 
 app.post('/add-word', (req, res) => {
-    const payload = req.body
-    console.log(payload)
+    try {
+        const payload = req.body
+        const lessonName = payload.state
+        addLesson(payload.state)
+        res.send({message: `The word ${payload.word} in lesson ${lessonName} was successfully added`})
+    } catch (error) {
+        res.status(500).send({message: error.message})
+    }
 })
-
-// app.post('/add-word', (req, res) => {
-//     addLesson()
-// })
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)

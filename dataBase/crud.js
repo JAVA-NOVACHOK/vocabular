@@ -1,24 +1,34 @@
 import sqlite3 from 'sqlite3'
 // import mysql from 'websql'
-import { createTableSql, insertOrIgnoreLesson, database, insertWord } from '../constants/consts.js'
+import { createWordsTable, insertOrIgnoreLesson, database, insertWord, createLessonsTable, lessonsTable } from '../constants/consts.js'
 // const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database(database, (err) => {
     if (err) {
-        alert(err.message)
         console.error(err);
     } else {
         console.log('Connected to the database');
     }
 });
 
-function createTableIfExist() {
-    db.run(createTableSql, function (err) {
+function createWordsTableIfExist() {
+    db.run(createWordsTable, function (err) {
         if (err) {
             alert(err)
             console.error(err.message);
         } else {
             console.log('Users table created or already exists');
+        }
+    });
+}
+
+function createLessonsTableIfExist() {
+    db.run(createLessonsTable, function (err) {
+        if (err) {
+            alert(err)
+            console.error(err.message);
+        } else {
+            console.log(`Table ${lessonsTable} created or already exists`);
         }
     });
 }
@@ -35,24 +45,23 @@ function addWord(lesson, word, definition) {
     });
 }
 
-// export function addLesson(lesson_name) {
+export function addLesson(lessonName) {
+    db.serialize(() => {
+        createLessonsTableIfExist()
+        db.run(insertOrIgnoreLesson, [lessonName], function (error) {
+            if (error) {
+                console.error(error);
+            } else {
+                console.log(`A new word has been inserted with ID ${this.lastID}`);
+            }
+        }.bind(db))
+        closeDb()
+    })
 
-//     const lessonName = $('lessonDropdown').val()
-//     const wordField = $('wordLanguage').val()
-//     const description = $('description').val()
-//     addLesson(lessonName)
-//     db.run(insertOrIgnoreLesson, [lesson_name], error => {
-//         if (error) {
-//             atert(error.message)
-//             console.error(error);
-//         } else {
-//             console.log(`A new word has been inserted with ID ${this.lastID}`);
-//         }
-//     })
-// }
+}
 
 
-function closeDb() {
+export function closeDb() {
     db.close((err) => {
         if (err) {
             console.error(err.message);
