@@ -19,8 +19,9 @@ CREATE TABLE IF NOT EXISTS ${wordsTable} (
 export const createLessonsTable = `
 CREATE TABLE IF NOT EXISTS ${lessonsTable} (
   ${lessonIdColumn} INTEGER PRIMARY KEY AUTOINCREMENT,
-  ${lessonNameColumn} TEXT UNIQE
-)`
+  ${lessonNameColumn} TEXT UNIQUE
+)
+`
 
 export const insertWord = `
   INSERT INTO ${wordsTable} ( ${word},

@@ -1,5 +1,3 @@
-// import e from "express";
-// import { addLesson } from "../dataBase/crud.js";
 
 var backAddOneWordBtn = document.getElementById('backAddOne');
 var addOneWordBtn = document.getElementById('addWord');

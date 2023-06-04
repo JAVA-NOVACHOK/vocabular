@@ -1,9 +1,12 @@
 import sqlite3 from 'sqlite3'
-// import mysql from 'websql'
-import { createWordsTable, insertOrIgnoreLesson, database, insertWord, createLessonsTable, lessonsTable } from '../constants/consts.js'
-// const sqlite3 = require('sqlite3').verbose();
+import path from 'path';
+import url from 'url';
 
-const db = new sqlite3.Database(database, (err) => {
+import { createWordsTable, insertOrIgnoreLesson, database, insertWord, createLessonsTable, lessonsTable } from '../constants/consts.js'
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const dbPath = path.join(__dirname,'crud', 'vocabular.db');
+const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
     if (err) {
         console.error(err);
     } else {
@@ -28,7 +31,7 @@ function createLessonsTableIfExist() {
             alert(err)
             console.error(err.message);
         } else {
-            console.log(`Table ${lessonsTable} created or already exists`);
+            console.log(`Table lessons created or already exists`);
         }
     });
 }
@@ -48,11 +51,11 @@ function addWord(lesson, word, definition) {
 export function addLesson(lessonName) {
     db.serialize(() => {
         createLessonsTableIfExist()
-        db.run(insertOrIgnoreLesson, [lessonName], function (error) {
+        db.run(insertOrIgnoreLesson, lessonName, function (error) {
             if (error) {
                 console.error(error);
             } else {
-                console.log(`A new word has been inserted with ID ${this.lastID}`);
+                console.log(`A new lesson has been inserted with ID ${this.lastID}`);
             }
         }.bind(db))
         closeDb()
