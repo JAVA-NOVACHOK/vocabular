@@ -21,9 +21,12 @@ function submitForm(form) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     })
-    .catch(error => {
-        console.log(error)
-    })
+        .catch(error => {
+            const errorText = document.getElementById('errorText');
+            errorText.textContent = error.message;
+            const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            errorModal.show();
+        })
 }
 
 

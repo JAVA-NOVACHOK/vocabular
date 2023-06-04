@@ -28,5 +28,5 @@ export const insertWord = `
   ${definition}, ${lessonIdColumn}) VALUES (?, ?, ?)`
 
   export const insertOrIgnoreLesson = `
-  INSERT OR IGNORE INTO ${lessonsTable} (lesson_name)
+  INSERTs OR IGNORE INTO ${lessonsTable} (lesson_name)
   VALUES (?)`
