@@ -20,13 +20,12 @@ export const createLessonsTable = `
 CREATE TABLE IF NOT EXISTS ${lessonsTable} (
   ${lessonIdColumn} INTEGER PRIMARY KEY AUTOINCREMENT,
   ${lessonNameColumn} TEXT UNIQUE
-)
-`
+)`
 
 export const insertWord = `
   INSERT INTO ${wordsTable} ( ${word},
   ${definition}, ${lessonIdColumn}) VALUES (?, ?, ?)`
 
-  export const insertOrIgnoreLesson = `
-  INSERTs OR IGNORE INTO ${lessonsTable} (lesson_name)
+export const insertOrIgnoreLesson = `
+  INSERT OR IGNORE INTO ${lessonsTable} (lesson_name)
   VALUES (?)`

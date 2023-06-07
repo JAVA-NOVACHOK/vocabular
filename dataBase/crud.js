@@ -9,14 +9,18 @@ const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const dbPath = path.join(__dirname, 'vocabular.db');
+let db = opendb()
 
-const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log('Connected to the database');
-    }
-});
+function opendb() {
+    return new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
+        if (err) {
+            console.error(err);
+            throw new Error(err)
+        } else {
+            console.log('Connected to the database');
+        }
+    })
+}
 
 function createWordsTableIfExist() {
     db.run(createWordsTable, function (err) {
@@ -28,18 +32,7 @@ function createWordsTableIfExist() {
     });
 }
 
-function createLessonsTableIfExist() {
-    return new Promise(function (resolve, reject) {
-        db.run(createLessonsTable, function (err) {
-            if (err) {
-                reject(err)
-            } else {
-                console.log(`Table lessons created or already exists`);
-                resolve()
-            }
-        });
-    });
-}
+
 
 function addWord(lesson, word, definition) {
     const values = [lesson, word, definition]
@@ -53,20 +46,29 @@ function addWord(lesson, word, definition) {
 }
 
 export function addLesson(lessonName) {
-    return new Promise(function (resolve, reject) {
+    try {
         db.serialize(() => {
             createLessonsTableIfExist()
             db.run(insertOrIgnoreLesson, lessonName, function (error) {
                 if (error) {
-                    reject(error)
+                    console.log(error.message)
                 } else {
                     console.log(`A new lesson has been inserted with name ${lessonName}`);
-                    resolve()
                 }
-            }.bind(db))
+            })
         })
-    })
+    } catch (error) {
+        throw new Error(error.message)
+    }
 
+}
+
+function createLessonsTableIfExist() {
+    try {
+        db.run(createLessonsTable)
+    } catch (error) {
+        throw new Error(error.message)
+    }
 }
 
 

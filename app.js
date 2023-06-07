@@ -35,12 +35,17 @@ app.post('/add-word', (req, res) => {
         const payload = req.body
         const lessonName = payload.state
         addLesson(payload.state)
-        res.send({message: `The word ${payload.word} in lesson ${lessonName} was successfully added`})
+        res.send({ message: `The word ${payload.word} in lesson ${lessonName} was successfully added` })
     } catch (error) {
-        res.status(500).send({message: error.message})
+        res.status(500).send({ message: error.message })
     }
 })
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
+
+// app.use((err, req, res, next) => {
+//     console.error('Global error handler:', err);
+//     res.status(500).send({ message: 'Internal Server Error' });
+//   });
